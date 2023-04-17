@@ -1,0 +1,19 @@
+GET http://localhost:8000/
+Accept: application/json
+
+### Get item
+GET http://localhost:8000/items/123?q=asdf
+
+### Put item
+PUT http://localhost:8000/items/123
+Content-Type: application/json
+
+{
+    "id": 123,
+    "name": "Who",
+    "joined": "2023-12-12 12:22"
+}
+
+### Post
+POST http://localhost:8000/send-notification/a@b.com?q=hello
+Content-Type: application/json
