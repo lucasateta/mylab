@@ -10,7 +10,7 @@
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "test_modern:app",
+                "examples.light:servient.app",
                 "--reload"
             ],
             "jinja": true,

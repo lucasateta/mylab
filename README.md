@@ -42,4 +42,5 @@ Key features:
 
 ## pyyaml
 
-## 
+## install
+pip install -e .[extra] --upgrade
