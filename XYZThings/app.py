@@ -9,7 +9,7 @@ from zeroconf.asyncio import AsyncZeroconf, AsyncServiceInfo
 
 from .models.thing import Server
 from .models.containers import MultipleThings
-from .routers import things, properties, actions, events, websockets
+from .routers import things, properties, actions, events, websockets, scenes
 from .utils import get_ip
 
 
@@ -82,6 +82,12 @@ class XYZThings:
             events.router,
             prefix="/things/{thing_id}",
             tags=["event"],
+            responses={404: {"description": "Not found"}},
+        )
+        restapi.include_router(
+            scenes.router,
+            prefix="/things/{thing_id}",
+            tags=["router"],
             responses={404: {"description": "Not found"}},
         )
 

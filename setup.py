@@ -18,6 +18,7 @@ setup(
         "mkdocs-material",
         "async-cron",
         "gmqtt",
+        "tinydb",
     ],
     extra_require={
         "dev": [
