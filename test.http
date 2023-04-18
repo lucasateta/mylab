@@ -1,0 +1,2 @@
+### Get quick data
+GET http://localhost:8000/things/urn%3Adev%3Aops%3Amy-spectrometer-1111/properties/QuickData
