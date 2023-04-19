@@ -13,7 +13,8 @@ from fastapi.responses import ORJSONResponse
 from tinydb import TinyDB, Query
 
 from ..toolkits.event_bus import ee
-
+from ..dependencies import get_thing
+from ..models.thing import Thing
 
 router = APIRouter()
 
@@ -93,13 +94,13 @@ async def run_scene_by_id(scene_data: SceneMsg):
 
 
 @router.get("/scenes")
-async def get_scenes():
+async def get_scenes(thing: Thing = Depends(get_thing)):
     data = table.all()
     return ORJSONResponse({"scenes": data})
 
 
 @router.post("/scenes")
-async def create_scene(scene: SceneInput):
+async def create_scene(scene: SceneInput, thing: Thing = Depends(get_thing)):
     scene_data = scene.dict()
     scene_data.update({"id": str(uuid.uuid4())})
     logger.debug(scene_data)
@@ -109,7 +110,7 @@ async def create_scene(scene: SceneInput):
 
 
 @router.put("/scenes/{scene_id}")
-async def update_scene(scene_id: str, scene_data: dict):
+async def update_scene(scene_id: str, scene_data: dict, thing: Thing = Depends(get_thing)):
     SceneModel = Query()
     doc_ids = table.update(scene_data, SceneModel.id == scene_id)
     if doc_ids:
@@ -119,7 +120,7 @@ async def update_scene(scene_id: str, scene_data: dict):
 
 
 @router.post("/scenes/{scene_id}")
-async def run_scene(scene_id: str):
+async def run_scene(scene_id: str, thing: Thing = Depends(get_thing)):
     SceneModel = Query()
     scene = table.get(SceneModel.id == scene_id)
     logger.debug(scene)
@@ -143,7 +144,7 @@ async def run_scene(scene_id: str):
 
 
 @router.delete("/scenes/{scene_id}")
-async def delete_scene(scene_id: str):
+async def delete_scene(scene_id: str, thing: Thing = Depends(get_thing)):
     SceneModel = Query()
     rule = table.get(SceneModel.id == scene_id)
     if rule:

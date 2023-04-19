@@ -23,6 +23,7 @@ setup(
     extra_require={
         "dev": [
             "pytest",
+            "pytest-cov",
             "pytest-asyncio",
             "httpx",
             "flake8",

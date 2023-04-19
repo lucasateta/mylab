@@ -35,6 +35,46 @@ Key features:
 ## OpenAPI
 
 ## JASON Schema
+https://json-schema.org/understanding-json-schema/
+
+### Understanding JSON Schema
+The *type* keyword
+`{"type": "string"}`
+- `string`
+  * `minLength`
+  * `maxLength`
+  * `pattern`
+
+- `number`
+  * `multipleOf`
+  * `minimum`
+  * `maximum`
+  * `exclusiveMinimum`
+  * `exclusiveMaximum`
+
+- `integer`
+
+- `object`
+  * `properties`
+  * `required`
+- `array`
+  * `items`
+  * `uniqueItems`
+
+- `boolean`
+- `null`
+- `enum`
+- `const`
+
+Declaring a JSON Schema
+`{"$schema": "https://json-schema.org/draft/2000-12/schema"}`
+
+Declaring a uniqie identifier
+`{"$id": "http://yourdomain.com/schemas/myschema.json"}`
+
+### jsonschema
+https://github.com/python-jsonschema/jsonschema
+`jsonschema` is an implementation of the JSON Schema specification for Python
 
 ## uvicorn
 

@@ -87,7 +87,7 @@ class XYZThings:
         restapi.include_router(
             scenes.router,
             prefix="/things/{thing_id}",
-            tags=["router"],
+            tags=["scene"],
             responses={404: {"description": "Not found"}},
         )
 
