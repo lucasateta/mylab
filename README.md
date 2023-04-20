@@ -82,5 +82,36 @@ https://github.com/python-jsonschema/jsonschema
 
 ## pyyaml
 
+## pyee
+
+pyee is a rough port of node.js's EventEmitter. It supplies a `EventEmitter` class that is similar to the `EventEmitter` calss from Node.js. In addition, it supplies the subclasses `AsyncIOEventEmitter`, `TwistedEventEmitter` and `ExecutorEventEmitter` for supporting async and threaded execution with asyncio, twisted, and concurrent.futures Executors respective, as supported by the environment.
+
+pyee.EventEmitter
+
+add_listener(event: str, f: Handler) -> Handler
+
+emit(event: str, *args: Any, **kwargs: Any) -> bool
+
+event_names() -> Set[str]
+
+listeners(event:str) -> List[Callable]
+
+pyee.asyncio.AsyncIOEventEmitter
+
+pyee.twisted.TwistedEventEmitter
+
+pyee.executor.ExecutorEventEmitter
+
+pyee.trio.TrioEventEmitter
+
+pyee.PyeeException
+
+pyee.uplift.uplift()
+
+pyee.cls.on(event: str)
+
+pyee.cls.evented(cls: Cls)
+
+
 ## install
 pip install -e .[extra] --upgrade

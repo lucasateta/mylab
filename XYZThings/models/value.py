@@ -6,9 +6,11 @@ from pyee.asyncio import AsyncIOEventEmitter as EventEmitter
 class Value(EventEmitter):
     """
     A property value.
+
     This is used for communicating between the Thing representation and the
     actual physical thing implementation.
-    Notifies all observers when the underlying value changes through an
+    
+    The Value notifies all observers when the underlying value changes through an
     external update (command to turn the light off) or if the underlying sensor
     reports a new value.
     """
@@ -16,6 +18,7 @@ class Value(EventEmitter):
     def __init__(self, initial_value, value_forwarder=None):
         """
         Initialize the object.
+
         initial_value -- the initial value
         value_forwarder -- the method that updates the actual value on the
                            thing
@@ -24,9 +27,13 @@ class Value(EventEmitter):
         self.last_value = initial_value
         self.value_forwarder = value_forwarder
 
+        if self.value_forwarder is not None:
+            self.value_forwarder(initial_value)
+
     async def set(self, value, with_action=True):
         """
         Set a new value for this thing.
+
         value -- value to set
         with_action -- do property action
         """
@@ -42,6 +49,7 @@ class Value(EventEmitter):
     async def notify_of_external_update(self, value, with_action=True):
         """
         Notify observers of a new value.
+
         value -- new value
         """
         if value is not None:
